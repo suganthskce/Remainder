@@ -1,6 +1,7 @@
 let jwtDecode = require("jwt-decode");
 let _ = require("lodash");
 //const logger = require('./../lib/logger');
+let helper = require("./../helper");
 
 const sendAccessDeniedResponse = () => {
     return {
@@ -17,40 +18,40 @@ const sendAccessDeniedResponse = () => {
     }
 }
 const decodeJwt = (request, reply, next) => {
-    //console.log("ADSDa", request);
-    //logger.info(request);
-    // Accepting all tokens for now   
-    return next();
-
-
-
-
-    const { raw: { method } } = request;
-    if (method == 'OPTIONS') {
+    if (helper.isExcluded(request.raw.originalUrl, 'decodeJwt')) {
         return next();
     }
-    const authorization = request.headers["authorization"];
-    request.userInfo = {};
-    try {
-        if (!_.isEmpty(authorization)) {
-            const decodedJwt = jwtDecode(authorization);
-            const { sub } = decodedJwt;
-            if (!_.isEmpty(sub)) {
-                const userInfo = JSON.parse(sub);
-                const { userId, role = 'DEFAULT', eur = "", additionalInfo = {} } = userInfo;
-                request.userInfo.userId = userId;
-                request.userInfo.role = role;
-                request.userInfo.eur = eur;
-                request.userAdditionalInfo = additionalInfo;
-            }
+    reply.send(sendAccessDeniedResponse());
+
+
+    /*
+    
+        const { raw: { method } } = request;
+        if (method == 'OPTIONS') {
             return next();
-        } else {
-            reply.send(sendAccessDeniedResponse());
         }
-    } catch (e) {
-        // throw new Error(e);
-        reply.send(sendAccessDeniedResponse());
-    }
+        const authorization = request.headers["authorization"];
+        request.userInfo = {};
+        try {
+            if (!_.isEmpty(authorization)) {
+                const decodedJwt = jwtDecode(authorization);
+                const { sub } = decodedJwt;
+                if (!_.isEmpty(sub)) {
+                    const userInfo = JSON.parse(sub);
+                    const { userId, role = 'DEFAULT', eur = "", additionalInfo = {} } = userInfo;
+                    request.userInfo.userId = userId;
+                    request.userInfo.role = role;
+                    request.userInfo.eur = eur;
+                    request.userAdditionalInfo = additionalInfo;
+                }
+                return next();
+            } else {
+                reply.send(sendAccessDeniedResponse());
+            }
+        } catch (e) {
+            // throw new Error(e);
+            reply.send(sendAccessDeniedResponse());
+        }*/
 };
 
 module.exports = decodeJwt;
