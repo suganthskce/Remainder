@@ -1,0 +1,33 @@
+{
+  "name": "remainder",
+  "version": "1.0.0",
+  "description": "A Node JS backend application to track all the remainders",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suganthskce/Remainder.git"
+  },
+  "keywords": [
+    "remainders"
+  ],
+  "author": "Suganth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suganthskce/Remainder/issues"
+  },
+  "homepage": "https://github.com/suganthskce/Remainder#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fastify": "^2.1.0",
+    "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "mysql": "^2.16.0",
+    "nconf": "^0.10.0",
+    "ramda": "^0.26.1",
+    "winston": "^3.2.1"
+  }
+}
