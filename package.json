@@ -4,7 +4,7 @@
   "description": "A Node JS backend application to track all the remainders",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "moment": "^2.24.0",
     "mysql": "^2.16.0",
     "nconf": "^0.10.0",
+    "nodemon": "^1.19.1",
     "ramda": "^0.26.1",
     "winston": "^3.2.1"
   }

@@ -1,0 +1,14 @@
+create database Remainder;
+use Remainder;
+drop table user_details;
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Admin@123'
+
+
+CREATE TABLE IF NOT EXISTS user_details (    user_id INT AUTO_INCREMENT  PRIMARY KEY,  fname VARCHAR(255) NOT NULL,	lname VARCHAR(255) NOT NULL,mobile VARCHAR(15) NOT NULL,	email VARCHAR(255) NOT NULL,username VARCHAR(255) NOT NULL,  password VARCHAR(255) NOT NULL, dob DATE NOT NULL,gender VARCHAR(1) NOT NULL,  	updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW(),  	created_at TIMESTAMP NOT NULL DEFAULT NOW());
+
+
+
+insert into user_details(fname,lname,mobile,email,password,dob,gender) values('Suganth','S','9942233381','suganth2610@gmail.com',abcdef','1996-10-26','M');
+
+update user_details set lname = 'Sugi' where fname ='Suganth';

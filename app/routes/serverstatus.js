@@ -2,7 +2,7 @@ const serverstatusHandler = require('./../handler/serverstatusHandler');
 
 const serverstatus = {
     method: "GET",
-    url: "/",
+    url: "/rms",
     handler: serverstatusHandler
 };
 

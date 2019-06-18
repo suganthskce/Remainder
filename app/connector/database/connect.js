@@ -3,7 +3,7 @@ const config = require('./../../config/database_config');
 const { isEmpty } = require('lodash');
 //const logger = require('./../../lib/logger');
 
-const connect = ({ sql = '' }) => {
+const connect = (sql = '') => {
     if (isEmpty(sql)) {
         return '';
     }
@@ -25,7 +25,7 @@ const connect = ({ sql = '' }) => {
             //logger.info(`Executing Query`);
             con.query(sql, function (err, result, fields) {
                 if (err) {
-                    //ogger.error(`Error in executing query -> ${sql}`);
+                    //logger.error(`Error in executing query -> ${sql}`);
                     reject(err);
                     throw { err, "message": "Error in executing query" };
                 }
