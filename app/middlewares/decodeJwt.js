@@ -1,7 +1,7 @@
 let jwtDecode = require("jwt-decode");
 let _ = require("lodash");
 //const logger = require('./../lib/logger');
-let helper = require("./../helper");
+const helper = require("../helper/middlewares");
 
 const sendAccessDeniedResponse = () => {
     return {
@@ -17,6 +17,7 @@ const sendAccessDeniedResponse = () => {
         ]
     }
 }
+
 const decodeJwt = (request, reply, next) => {
     if (helper.isExcluded(request.raw.originalUrl, 'decodeJwt')) {
         return next();

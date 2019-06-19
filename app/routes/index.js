@@ -11,6 +11,9 @@ const routesInfo = {
             serverstatus.url,
             register.url,
         ]
+    },
+    dataModal: {
+        [register.url]: register.dataModal
     }
 };
 
