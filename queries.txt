@@ -12,3 +12,6 @@ CREATE TABLE IF NOT EXISTS user_details (    user_id INT AUTO_INCREMENT  PRIMARY
 insert into user_details(fname,lname,mobile,email,password,dob,gender) values('Suganth','S','9942233381','suganth2610@gmail.com',abcdef','1996-10-26','M');
 
 update user_details set lname = 'Sugi' where fname ='Suganth';
+
+
+update user_details set fname = 'Test',lname = 'Account1',mobile = '1234567890',email = 'asdasd@asdsd.com',username = 'testAccount',password = 'abcdef',dob = '1996-01-01',gender = 'F' where user_id = '1';

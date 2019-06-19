@@ -1,10 +1,10 @@
-const registerMapper = require('./../../requestMapper/user/register');
+const updateMapper = require('./../../requestMapper/user/update');
 const connect = require('./../../connector/database/connect');
 
-const registerHandler = async (request, reply) => {
+const updateHandler = async (request, reply) => {
 
     const { body = {} } = request;
-    const requestData = registerMapper(body);
+    const requestData = updateMapper(body);
     if (requestData.success) {
         try {
             const dbResponse = await connect(requestData.query);
@@ -18,4 +18,4 @@ const registerHandler = async (request, reply) => {
     }
 }
 
-module.exports = registerHandler;
+module.exports = updateHandler;

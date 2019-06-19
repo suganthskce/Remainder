@@ -1,14 +1,16 @@
-const registerMapper = require('./../../requestMapper/user/register');
+const fetchUser = require('./../../requestMapper/user/fetchUser');
 const connect = require('./../../connector/database/connect');
+const dekorator = require('./../../dekorator/user/fetchUser');
 
-const registerHandler = async (request, reply) => {
+const fetchUserHandler = async (request, reply) => {
 
-    const { body = {} } = request;
-    const requestData = registerMapper(body);
-    if (requestData.success) {
+    const { params = {} } = request;
+    const { id = '' } = params;
+    if (id) {
+        const requestData = fetchUser(id);
         try {
             const dbResponse = await connect(requestData.query);
-            reply.send({ data: dbResponse });
+            reply.send(dekorator(dbResponse));
         } catch (err) {
             //logger.error(`${err}`);
             reply.send({ status: { success: false }, errors: [{ errCode: err.errno, message: err.sqlMessage }] });
@@ -18,4 +20,4 @@ const registerHandler = async (request, reply) => {
     }
 }
 
-module.exports = registerHandler;
+module.exports = fetchUserHandler;
