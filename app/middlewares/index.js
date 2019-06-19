@@ -5,7 +5,7 @@ let BaseMiddleware = require("./base-middleware");
 
 module.exports = {
     order: {
-        preHandler: ["decodeJwt", "dataModalCheck"],
+        preHandler: ["decodeJwt"/*, "dataModalCheck"*/],
         onSend: ["makeResponse"]
     },
     initialize: function (app) {
