@@ -19,7 +19,7 @@ const connect = (sql = '') => {
             if (err) {
                 //logger.error(`Error in establishing connection to Database`);
                 reject(err);
-                throw { err, "message": "Error in establishing connection" };
+                //throw { err, "message": "Error in establishing connection" };
             }
             //logger.info(`Connection Established`);
             //logger.info(`Executing Query`);
@@ -27,7 +27,8 @@ const connect = (sql = '') => {
                 if (err) {
                     //logger.error(`Error in executing query -> ${sql}`);
                     reject(err);
-                    throw { err, "message": "Error in executing query" };
+                    //throw err;
+                    //throw { err, "message": "Error in executing query" };
                 }
                 //logger.info(`Query Executed`);
                 resolve(result);

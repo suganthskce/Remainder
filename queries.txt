@@ -1,11 +1,19 @@
 create database Remainder;
 use Remainder;
+
 drop table user_details;
 
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Admin@123'
 
+::::::::::::::::TABLES::::::::::::
 
-CREATE TABLE IF NOT EXISTS user_details (    user_id INT AUTO_INCREMENT  PRIMARY KEY,  fname VARCHAR(255) NOT NULL,	lname VARCHAR(255) NOT NULL,mobile VARCHAR(15) NOT NULL,	email VARCHAR(255) NOT NULL,username VARCHAR(255) NOT NULL,  password VARCHAR(255) NOT NULL, dob DATE NOT NULL,gender VARCHAR(1) NOT NULL,  	updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW(),  	created_at TIMESTAMP NOT NULL DEFAULT NOW());
+CREATE TABLE IF NOT EXISTS user_details (    user_id INT AUTO_INCREMENT  PRIMARY KEY,  fname VARCHAR(255) NOT NULL,	lname VARCHAR(255) NOT NULL,mobile VARCHAR(15) NOT NULL UNIQUE,	email VARCHAR(255) NOT NULL UNIQUE,username VARCHAR(255) NOT NULL UNIQUE,  password VARCHAR(255) NOT NULL, dob DATE NOT NULL,gender VARCHAR(1) NOT NULL,  	updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW(),  	created_at TIMESTAMP NOT NULL DEFAULT NOW()); 
+
+create table events_{id} ( event_id INT AUTO_INCREMENT  PRIMARY KEY,  deleted TINYINT(1) DEFAULT 0 ,name VARCHAR(255) NOT NULL, description TEXT DEFAULT NULL, evtData DATE NOT NULL,addInfo json DEFAULT NULL,  	updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW(),  	created_at TIMESTAMP NOT NULL DEFAULT NOW());
+
+::::::::::::::::::::::::::::::::::
+
+delete from user_details;
 
 
 
@@ -15,3 +23,10 @@ update user_details set lname = 'Sugi' where fname ='Suganth';
 
 
 update user_details set fname = 'Test',lname = 'Account1',mobile = '1234567890',email = 'asdasd@asdsd.com',username = 'testAccount',password = 'abcdef',dob = '1996-01-01',gender = 'F' where user_id = '1';
+
+
+
+
+
+
+
