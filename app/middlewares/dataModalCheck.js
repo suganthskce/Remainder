@@ -5,7 +5,6 @@ const dataModalCheck = (request, reply, next) => {
     if (!dataModal) {
         return next();
     }
-    console.log("dataModal", dataModal);
     return next();
 };
 

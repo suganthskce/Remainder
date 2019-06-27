@@ -1,15 +1,17 @@
-const editEventMapper = require('./../../requestMapper/event/editEvent');
+const fetchEvent = require('./../../requestMapper/event/fetchEvent');
 const connect = require('./../../connector/database/connect');
+const dekorator = require('./../../dekorator/event/fetchEvent');
 
-const editEventHandler = async (request, reply) => {
+const fetchEventHandler = async (request, reply) => {
 
-    const { body = {} } = request;
-    const requestData = editEventMapper(body);
+    const { params = {} } = request;
+    const requestData = fetchEvent(params);
     if (requestData.success) {
         try {
             const dbResponse = await connect(requestData.query);
-            reply.send({ data: `Event Modified.`, dbResponse });
+            reply.send(dekorator(dbResponse));
         } catch (err) {
+            //logger.error(`${err}`);
             reply.send({ status: { success: false }, errors: [{ errCode: err.errno, message: err.sqlMessage }] });
         }
     } else {
@@ -17,4 +19,4 @@ const editEventHandler = async (request, reply) => {
     }
 }
 
-module.exports = editEventHandler;
+module.exports = fetchEventHandler;

@@ -2,7 +2,7 @@ const fetchUserHandler = require('./../../handler/user/fetchUserHandler');
 
 const fetchUser = {
     method: "GET",
-    url: "/rms/fetch/:id",
+    url: "/rms/user/fetch/:id",
     handler: fetchUserHandler
 };
 
