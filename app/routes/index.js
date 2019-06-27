@@ -1,5 +1,6 @@
 const serverstatus = require('./serverstatus');
 const register = require('./user/register');
+const signIn = require('./user/signIn');
 const update = require('./user/update');
 const fetchUser = require('./user/fetchUser');
 const addEvent = require('./event/addEvent');
@@ -11,6 +12,7 @@ const listEvent = require('./event/listEvent');
 const routesInfo = {
     routes: [
         serverstatus, register,
+        signIn,
         update, fetchUser,
         addEvent, deleteEvent,
         editEvent, fetchEvent,
@@ -18,7 +20,8 @@ const routesInfo = {
     ],
     exculsion: {
         decodeJwt: [
-            serverstatus.url
+            serverstatus.url,
+            signIn.url
         ]
     },
     dataModal: {

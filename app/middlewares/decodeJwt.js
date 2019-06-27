@@ -2,6 +2,7 @@ let jwtDecode = require("jwt-decode");
 let _ = require("lodash");
 //const logger = require('./../lib/logger');
 const helper = require("../helper/middlewares");
+const jwt = require('jsonwebtoken');
 
 const sendAccessDeniedResponse = () => {
     return {
@@ -19,11 +20,24 @@ const sendAccessDeniedResponse = () => {
 }
 
 const decodeJwt = (request, reply, next) => {
-    return next();
     if (helper.isExcluded(request.raw.originalUrl, 'decodeJwt')) {
         return next();
     }
-    reply.send(sendAccessDeniedResponse());
+    const { headers = {} } = request;
+    const { authorization = '' } = headers;
+    const token = authorization.split(' ');
+    if (token[1]) {
+        jwt.verify(token[1], 'suganth', function (err, decoded) {
+            if (err) {
+                reply.send(sendAccessDeniedResponse());
+            } else {
+                request.decoded = decoded;
+                next();
+            }
+        });
+    } else {
+        reply.send(sendAccessDeniedResponse());
+    }
 };
 
 module.exports = decodeJwt;

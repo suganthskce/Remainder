@@ -22,6 +22,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "fastify": "^2.1.0",
+    "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
