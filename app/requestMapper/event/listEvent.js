@@ -1,7 +1,8 @@
 const { isEmpty } = require("lodash");
 
-const listEventMapper = (payload) => {
-    const { eventIds = [], user_id = '' } = payload;
+const listEventMapper = (payload, decoded) => {
+    const { eventIds = [] } = payload;
+    const { user_id = '' } = decoded;
     let query = ``;
     if (isEmpty(eventIds)) {
         query = `select * from event_${user_id};`;

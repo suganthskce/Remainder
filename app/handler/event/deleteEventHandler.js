@@ -3,8 +3,8 @@ const connect = require('./../../connector/database/connect');
 
 const deleteEventHandler = async (request, reply) => {
 
-    const { params = {} } = request;
-    const requestData = deleteEventMapper(params);
+    const { params = {}, decoded = {} } = request;
+    const requestData = deleteEventMapper(params, decoded);
     if (requestData.success) {
         try {
             const dbResponse = await connect(requestData.query);

@@ -4,8 +4,8 @@ const dekorator = require('./../../dekorator/event/listEvent');
 
 const listEventHandler = async (request, reply) => {
 
-    const { body = {} } = request;
-    const requestData = listEventMapper(body);
+    const { body = {}, decoded = {} } = request;
+    const requestData = listEventMapper(body, decoded);
     if (requestData.success) {
         try {
             const dbResponse = await connect(requestData.query);

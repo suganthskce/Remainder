@@ -4,8 +4,8 @@ const dekorator = require('./../../dekorator/event/fetchEvent');
 
 const fetchEventHandler = async (request, reply) => {
 
-    const { params = {} } = request;
-    const requestData = fetchEvent(params);
+    const { params = {}, decoded = {} } = request;
+    const requestData = fetchEvent(params, decoded);
     if (requestData.success) {
         try {
             const dbResponse = await connect(requestData.query);

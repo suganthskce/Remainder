@@ -1,6 +1,8 @@
-const updateMapper = (payload) => {
-    const { user_id = '', ...remaining } = payload;
-
+const updateMapper = (payload, decoded) => {
+    let { user_id, ...remaining } = payload;
+    if (!user_id) {
+        user_id = decoded.user_id;
+    }
     let query = 'update user_details set ';
     const keys = Object.keys(remaining);
     const values = keys.map(key => {

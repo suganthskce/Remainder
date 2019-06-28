@@ -1,5 +1,6 @@
-const editEventMapper = (payload) => {
-    const { user_id = '', event_id = '', ...remaining } = payload;
+const editEventMapper = (payload, decoded) => {
+    const { event_id = '', ...remaining } = payload;
+    const { user_id = '' } = decoded;
     const keys = Object.keys(remaining);
     const updateData = keys.map(key => {
         return `${key}='${key !== 'addInfo' ? payload[key] : JSON.stringify(payload[key])}'`;

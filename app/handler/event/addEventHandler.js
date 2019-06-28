@@ -3,8 +3,8 @@ const connect = require('./../../connector/database/connect');
 
 const addEventHandler = async (request, reply) => {
 
-    const { body = {} } = request;
-    const requestData = addEventMapper(body);
+    const { body = {}, decoded = {} } = request;
+    const requestData = addEventMapper(body, decoded);
     if (requestData.success) {
         try {
             const dbResponse = await connect(requestData.query);

@@ -2,7 +2,7 @@ const deleteEventHandler = require('./../../handler/event/deleteEventHandler');
 
 const deleteEvent = {
     method: "DELETE",
-    url: "/rms/event/:userId/:id",
+    url: "/rms/event/:id",
     handler: deleteEventHandler
 };
 

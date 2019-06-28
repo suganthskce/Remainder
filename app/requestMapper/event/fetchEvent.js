@@ -1,6 +1,7 @@
-const fetchEvent = (params) => {
-    const { id = '', userId = '' } = params;
-    let query = `select * from event_${userId} where event_id=${id};`;
+const fetchEvent = (params, decoded) => {
+    const { id = '' } = params;
+    const { user_id = '' } = decoded;
+    let query = `select * from event_${user_id} where event_id=${id};`;
     return {
         query,
         success: true
