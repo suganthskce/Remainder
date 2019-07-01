@@ -16,7 +16,7 @@ const signInHandler = async (request, reply) => {
                 });
                 reply.send({ userInfo: { ...userInfo, token } });
             }
-            reply.send({ message: "Invalid username or Password", status: { success: false } });
+            reply.send({ errors: [{ errCode: 400, message: "Invalid username or Password" }], status: { success: false } });
         } catch (err) {
             //logger.error(`${err}`);
             reply.send({ status: { success: false }, errors: [{ errCode: err.errno, message: err.sqlMessage }] });
