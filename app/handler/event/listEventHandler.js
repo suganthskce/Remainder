@@ -3,7 +3,6 @@ const connect = require('./../../connector/database/connect');
 const dekorator = require('./../../dekorator/event/listEvent');
 
 const listEventHandler = async (request, reply) => {
-
     const { body = {}, decoded = {} } = request;
     const requestData = listEventMapper(body, decoded);
     if (requestData.success) {

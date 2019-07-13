@@ -1,6 +1,6 @@
 const { isEmpty } = require("lodash");
 
-const listEventMapper = (payload, decoded) => {
+const listEventMapper = (payload = {}, decoded) => {
     const { eventIds = [] } = payload;
     const { user_id = '' } = decoded;
     let query = ``;

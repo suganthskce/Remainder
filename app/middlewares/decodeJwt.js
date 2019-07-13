@@ -26,8 +26,8 @@ const decodeJwt = (request, reply, next) => {
     const { headers = {} } = request;
     const { authorization = '' } = headers;
     const token = authorization.split(' ');
-    if (token[1]) {
-        jwt.verify(token[1], 'suganth', function (err, decoded) {
+    if (token[0]) {
+        jwt.verify(token[0], 'suganth', function (err, decoded) {
             if (err) {
                 reply.send(sendAccessDeniedResponse());
             } else {

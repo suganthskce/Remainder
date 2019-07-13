@@ -12,7 +12,7 @@ const signInHandler = async (request, reply) => {
             const { success = false, userInfo = {} } = dekorator(dbResponse);
             if (success) {
                 var token = jwt.sign(userInfo, 'suganth', {
-                    expiresIn: 900 // expires in 15 minutes
+                    expiresIn: 24 * 60 * 60 // expires in 1 day
                 });
                 reply.send({ userInfo: { ...userInfo, token } });
             }
