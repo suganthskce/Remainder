@@ -20,6 +20,7 @@ const sendAccessDeniedResponse = () => {
 }
 
 const decodeJwt = (request, reply, next) => {
+    return next();
     if (helper.isExcluded(request.raw.originalUrl, 'decodeJwt')) {
         return next();
     }
