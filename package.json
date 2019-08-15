@@ -34,7 +34,5 @@
     "twilio": "^3.30.0",
     "winston": "^3.2.1"
   },
-  "devDependencies": {
-    "aerospike": "^3.11.0"
-  }
+  "devDependencies": {}
 }

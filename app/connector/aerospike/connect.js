@@ -1,4 +1,4 @@
-const Aerospike = require('aerospike')
+//const Aerospike = require('aerospike')
 const mysql = require('mysql');
 const config = require('./../../config/database_config');
 const { isEmpty } = require('lodash');
