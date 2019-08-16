@@ -8,11 +8,12 @@ const serverstatusHandler = async (request, reply) => {
     const to1 = '+919942233381';
     const chottu = '+917092542919';
     const preveen = '+917845584181';
+    const nithiya = '+919788317058';
 
     client.messages.create({
         from: 'whatsapp:+14155238886',
-        body: 'No da. Just a small testing....',
-        to: `whatsapp:${preveen}`
+        body: 'Replay tha idhu',
+        to: `whatsapp:${to1}`
     }).then(message => console.log(message.sid));
 
     reply.send({ data: { message: "Sever is Up!" } });

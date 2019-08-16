@@ -4,7 +4,7 @@
   "description": "A Node JS backend application to track all the remainders",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "export TWILIO_ACCOUNT_SID=AC885c5bfe942f2c1e5c8d5e74cb4fa856 && export TWILIO_AUTH_TOKEN=a5c120881e53f1446f609c43fba5c6bf && nodemon server.js"
   },
   "repository": {
     "type": "git",
