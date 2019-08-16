@@ -1,7 +1,7 @@
 const incomingMessageHandler = require('./../../handler/message/incomingMessageHandler');
 
 const incomingMessage = {
-    method: "PUT",
+    method: "POST",
     url: "/rms/message/incoming",
     handler: incomingMessageHandler
 };
