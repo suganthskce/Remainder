@@ -12,7 +12,7 @@ const serverstatusHandler = async (request, reply) => {
 
     client.messages.create({
         from: 'whatsapp:+14155238886',
-        body: 'Replay tha idhu',
+        body: 'Testing....',
         to: `whatsapp:${to1}`
     }).then(message => console.log(message.sid));
 
