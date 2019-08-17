@@ -2,6 +2,7 @@ const { isEmpty } = require("lodash");
 
 
 const makeResponse = (request, reply, payload, next) => {
+    next(null, payload);
     try {
         payload = !isEmpty(payload) ? JSON.parse(payload) : {};
         const { status = {}, meta = {} } = payload;
