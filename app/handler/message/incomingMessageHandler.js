@@ -1,5 +1,6 @@
 const { isEmpty } = require("lodash");
 const processEntities = require("../../processor/message/entities");
+const sendMessage = require("./../../connector/telegramApi/sendMessage");
 
 const incomingMessageHandler = async (request, reply) => {
 
@@ -10,23 +11,25 @@ const incomingMessageHandler = async (request, reply) => {
     const { message_id = '', from = {}, chat = {}, date = '', text = '', entities = [] } = message;
     if (!isEmpty(entities)) {
         processEntities(data);
+    } else {
+        switch (getKeyFromMessage(text)) {
+            case "WALLET":
+
+            default:
+                sendMessage(from.id, 'Invalid Input');
+        }
     }
     const { is_bot = false, first_name = '', last_name = '', language_code = '' } = from;
     const { id = '', type = '' } = chat;
 
-
-
-    //console.log("ddd", ddd);
-    //const { Bodydsad = '', asd = '' } = ddd;
-    //console.log("Bodydsad", Bodydsad);
-    console.log(`${JSON.stringify(body)}`);
-
-    //const MessagingResponse = require('twilio').twiml.MessagingResponse;
     reply.send('');
-    //reply.header('Content-Type', 'text/xml');
-    //const response = new MessagingResponse();
-    //response.message('Message Delivered....');
-    //reply.send(response.toString());
+}
+
+
+
+
+const getKeyFromMessage = (text) => {
+
 }
 
 module.exports = incomingMessageHandler;
