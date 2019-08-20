@@ -20,10 +20,10 @@ const processEntities = (payload = {}) => {
 
                                 //Welcome Message:
                                 sendMessage(from.id, 'Account Registered');
-                                connect(`CREATE TABLE wallet_${from_id}(id INT AUTO_INCREMENT PRIMARY KEY,type VARCHAR(25),amount FLOAT NOT NULL,comments TEXT);`);
+                                connect(`CREATE TABLE wallet_${from.id}(id INT AUTO_INCREMENT PRIMARY KEY,type VARCHAR(25),amount FLOAT NOT NULL,comments TEXT);`);
                                 logger.info(`User Added for Chat Api`);
                             } catch (err) {
-                                logger.error(`Error in Adding user. [${err.errno}]:${err.sqlMessage}`);
+                                logger.error("Error in Adding user:", err);
                             }
                         }
                 }
