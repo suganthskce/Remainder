@@ -1,9 +1,21 @@
+const { isEmpty } = require("lodash");
+const processEntities = require("../../processor/message/entities");
 
 const incomingMessageHandler = async (request, reply) => {
 
     const { body = {} } = request;
     console.log("Incoming message:::::::::");
-    //const ddd = JSON.parse(JSON.stringify(body));
+    const data = JSON.parse(JSON.stringify(body));
+    const { update_id = '', message = {} } = data;
+    const { message_id = '', from = {}, chat = {}, date = '', text = '', entities = [] } = message;
+    if (!isEmpty(entities)) {
+        processEntities(data);
+    }
+    const { is_bot = false, first_name = '', last_name = '', language_code = '' } = from;
+    const { id = '', type = '' } = chat;
+
+
+
     //console.log("ddd", ddd);
     //const { Bodydsad = '', asd = '' } = ddd;
     //console.log("Bodydsad", Bodydsad);

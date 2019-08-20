@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const config = require('./../../config/database_config');
 const { isEmpty } = require('lodash');
-//const logger = require('./../../lib/logger');
+const { logger } = require('./../../lib/logger');
 
 const connect = (sql = '') => {
     if (isEmpty(sql)) {
@@ -14,23 +14,23 @@ const connect = (sql = '') => {
             password: config.password,
             database: config.database
         });
-        //logger.info(`Establishing connection to Database`);
+        logger.info(`Establishing connection to Database`);
         con.connect(function (err) {
             if (err) {
-                //logger.error(`Error in establishing connection to Database`);
+                logger.error(`Error in establishing connection to Database`);
                 reject(err);
                 //throw { err, "message": "Error in establishing connection" };
             }
-            //logger.info(`Connection Established`);
-            //logger.info(`Executing Query`);
+            logger.info(`Connection Established`);
+            logger.info(`Executing Query`);
             con.query(sql, function (err, result, fields) {
                 if (err) {
-                    //logger.error(`Error in executing query -> ${sql}`);
+                    logger.error(`Error in executing query -> ${sql}`);
                     reject(err);
                     //throw err;
                     //throw { err, "message": "Error in executing query" };
                 }
-                //logger.info(`Query Executed`);
+                logger.info(`Query Executed`);
                 resolve(result);
             });
         });

@@ -1,1 +1,7 @@
-{}
+{
+    "logging": {
+        "label": "Remainder",
+        "consoleLevel": "info",
+        "fileLevel": "error"
+    }
+}
