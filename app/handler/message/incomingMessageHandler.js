@@ -5,7 +5,6 @@ const sendMessage = require("./../../connector/telegramApi/sendMessage");
 const incomingMessageHandler = async (request, reply) => {
 
     const { body = {} } = request;
-    console.log("Incoming message:::::::::");
     const data = JSON.parse(JSON.stringify(body));
     const { update_id = '', message = {} } = data;
     const { message_id = '', from = {}, chat = {}, date = '', text = '', entities = [] } = message;
@@ -14,7 +13,8 @@ const incomingMessageHandler = async (request, reply) => {
     } else {
         switch (getKeyFromMessage(text)) {
             case "WALLET":
-
+                sendMessage(from.id, `Key: WALLET`);
+                break;
             default:
                 sendMessage(from.id, 'Invalid Input');
         }
