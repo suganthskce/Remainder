@@ -4,6 +4,7 @@ const { isEmpty } = require('lodash');
 const { logger } = require('./../../lib/logger');
 
 const connect = (sql = '') => {
+    logger.info(`Inside Connect to Database: ${sql}`);
     if (isEmpty(sql)) {
         return '';
     }

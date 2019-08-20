@@ -9,7 +9,6 @@ const registerNewUser = (payload = {}) => {
         return typeof payload[key] === 'boolean' ? payload[key] ? 1 : 0 : payload[key];
     });
     const query = `insert into chat_user_details(${keys.join(',')}) values ('${values.join("','")}');`;
-    logger.info(`Query : ${query}`);
     return {
         query,
         success: true

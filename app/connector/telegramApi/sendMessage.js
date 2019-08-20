@@ -1,11 +1,14 @@
 const axios = require("axios");
 const { logger } = require("./../../lib/logger");
-const sendMessage = (data) => {
+const sendMessage = (chat_id, text) => {
     logger.info(`Sending message to user: [data]-${JSON.stringify(data)}`);
     const options = {
         url: `https://api.telegram.org/${process.env.BOTAPIKEY}/sendMessage`,
         method: 'POST',
-        data
+        data: {
+            chat_id,
+            text
+        }
     };
     return axios(options)
         .then(responseData => {

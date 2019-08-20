@@ -17,12 +17,10 @@ const processEntities = (payload = {}) => {
                         if (requestData.success) {
                             try {
                                 const dbResponse = await connect(requestData.query);
+
                                 //Welcome Message:
-                                const messagePayload = {
-                                    chat_id: from.id,
-                                    text: 'Account Registered'
-                                }
-                                sendMessage(messagePayload);
+                                sendMessage(from.id, 'Account Registered');
+                                connect(`CREATE TABLE wallet_${from_id}(id INT AUTO_INCREMENT PRIMARY KEY,type VARCHAR(25),amount FLOAT NOT NULL,comments TEXT);`);
                                 logger.info(`User Added for Chat Api`);
                             } catch (err) {
                                 logger.error(`Error in Adding user. [${err.errno}]:${err.sqlMessage}`);
