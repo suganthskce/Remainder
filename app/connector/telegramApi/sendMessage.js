@@ -3,7 +3,7 @@ const { logger } = require("./../../lib/logger");
 const sendMessage = (data) => {
     logger.info(`Sending message to user: [data]-${JSON.stringify(data)}`);
     const options = {
-        url: 'https://api.telegram.org/bot906297282:AAHpp2qgLpyxniwoNrE93A476rMTcQIxHKo/sendMessage',
+        url: `https://api.telegram.org/${process.env.BOTAPIKEY}/sendMessage`,
         method: 'POST',
         data
     };
