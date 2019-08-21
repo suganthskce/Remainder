@@ -10,6 +10,8 @@ const incomingMessageHandler = async (request, reply) => {
     logger.info(JSON.stringify(data));
     const { update_id = '', message = {} } = data;
     const { message_id = '', from = {}, chat = {}, date = '', text = '', entities = [] } = message;
+    logger.info(JSON.stringify(message));
+    logger.info(JSON.stringify(chat));
     if (!isEmpty(entities)) {
         processEntities(data);
     } else {
@@ -19,6 +21,7 @@ const incomingMessageHandler = async (request, reply) => {
                 break;
             case "ERROR":
             default:
+                logger.info(chat.id);
                 sendMessage(chat.id, 'Invalid Input');
         }
     }
