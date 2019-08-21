@@ -7,7 +7,7 @@ const incomingMessageHandler = async (request, reply) => {
 
     const { body = {} } = request;
     const data = JSON.parse(JSON.stringify(body));
-    logger.info(data);
+    logger.info(JSON.stringify(data));
     const { update_id = '', message = {} } = data;
     const { message_id = '', from = {}, chat = {}, date = '', text = '', entities = [] } = message;
     if (!isEmpty(entities)) {
