@@ -15,11 +15,11 @@ const incomingMessageHandler = async (request, reply) => {
     } else {
         switch (getKeyFromMessage(text)) {
             case "WALLET":
-                sendMessage(from.id, `Key: WALLET`);
+                sendMessage(chat.id, `Key: WALLET`);
                 break;
             case "ERROR":
             default:
-                sendMessage(from.id, 'Invalid Input');
+                sendMessage(chat.id, 'Invalid Input');
         }
     }
     const { is_bot = false, first_name = '', last_name = '', language_code = '' } = from;
