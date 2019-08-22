@@ -1,5 +1,6 @@
 const { isEmpty } = require("lodash");
 const processEntities = require("../../processor/message/entities");
+const helpMessages = require("../../processor/message/helpMessages");
 const sendMessage = require("./../../connector/telegramApi/sendMessage");
 const { logger } = require("./../../lib/logger");
 
@@ -19,6 +20,9 @@ const incomingMessageHandler = async (request, reply) => {
             case "WALLET":
                 sendMessage(chat.id, `Key: WALLET`);
                 break;
+            case "HELP":
+                helpMessages(data);
+                break;
             case "ERROR":
             default:
                 logger.info(chat.id);
@@ -32,7 +36,8 @@ const incomingMessageHandler = async (request, reply) => {
 }
 
 const pattern = {
-    WALLET: [/#w/i, /#wallet/i]
+    WALLET: [/#w/i, /#wallet/i],
+    HELP: [/#h/i, /#help/i],
 }
 
 
