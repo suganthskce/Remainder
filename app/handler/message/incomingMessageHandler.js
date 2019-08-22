@@ -21,6 +21,7 @@ const incomingMessageHandler = async (request, reply) => {
                 sendMessage(chat.id, `Key: WALLET`);
                 break;
             case "HELP":
+                sendMessage(chat.id, `Key: HELP`);
                 helpMessages(data);
                 break;
             case "ERROR":
@@ -36,8 +37,8 @@ const incomingMessageHandler = async (request, reply) => {
 }
 
 const pattern = {
-    WALLET: [/#w/i, /#wallet/i],
-    HELP: [/#h/i, /#help/i],
+    WALLET: [/w/i, /wallet/i],
+    HELP: [/h/i, /help/i],
 }
 
 
