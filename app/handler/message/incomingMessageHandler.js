@@ -27,7 +27,7 @@ const incomingMessageHandler = async (request, reply) => {
             case "ERROR":
             default:
                 logger.info(chat.id);
-                sendMessage(chat.id, 'Invalid Input \nSend \'help\' to get help without \'');
+                sendMessage(chat.id, 'Invalid Input \nSend \'help\' to get help');
         }
     }
     const { is_bot = false, first_name = '', last_name = '', language_code = '' } = from;
