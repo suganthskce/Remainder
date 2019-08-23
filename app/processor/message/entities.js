@@ -20,7 +20,7 @@ const processEntities = (payload = {}) => {
 
                                 //Welcome Message:
                                 sendMessage(from.id, 'Account Registered');
-                                connect(`CREATE TABLE wallet_${from.id}(id INT AUTO_INCREMENT PRIMARY KEY,type VARCHAR(25),amount FLOAT NOT NULL,comments TEXT);`);
+                                connect(`CREATE TABLE wallet_${from.id}(id INT AUTO_INCREMENT PRIMARY KEY,type VARCHAR(25),amount FLOAT NOT NULL,comments TEXT, created_on TIMESTAMP NOT NULL DEFAULT NOW());`);
                                 logger.info(`User Added for Chat Api`);
                             } catch (err) {
                                 logger.error("Error in Adding user:", err);

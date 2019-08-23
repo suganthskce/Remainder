@@ -1,6 +1,7 @@
 const { isEmpty } = require("lodash");
 const processEntities = require("../../processor/message/entities");
 const helpMessages = require("../../processor/message/helpMessages");
+const wallet = require("../../processor/message/wallet");
 const sendMessage = require("./../../connector/telegramApi/sendMessage");
 const { logger } = require("./../../lib/logger");
 
@@ -8,26 +9,25 @@ const incomingMessageHandler = async (request, reply) => {
 
     const { body = {} } = request;
     const data = JSON.parse(JSON.stringify(body));
-    logger.info(JSON.stringify(data));
+    logger.info(`Data recieved : ${JSON.stringify(data)}`);
     const { update_id = '', message = {} } = data;
     const { message_id = '', from = {}, chat = {}, date = '', text = '', entities = [] } = message;
-    logger.info(JSON.stringify(message));
-    logger.info(JSON.stringify(chat));
+
     if (!isEmpty(entities)) {
         processEntities(data);
     } else {
         switch (getKeyFromMessage(text)) {
             case "WALLET":
-                sendMessage(chat.id, `Key: WALLET`);
+                wallet(data);
+                //sendMessage(chat.id, `Key: WALLET`);
                 break;
             case "HELP":
-                sendMessage(chat.id, `Key: HELP`);
                 helpMessages(data);
                 break;
             case "ERROR":
             default:
                 logger.info(chat.id);
-                sendMessage(chat.id, 'Invalid Input');
+                sendMessage(chat.id, 'Invalid Input \nSend \'help\' to get help without \'');
         }
     }
     const { is_bot = false, first_name = '', last_name = '', language_code = '' } = from;
@@ -37,8 +37,8 @@ const incomingMessageHandler = async (request, reply) => {
 }
 
 const pattern = {
-    WALLET: [/w/i, /wallet/i],
-    HELP: [/h/i, /help/i],
+    WALLET: ['w', 'wallet'],
+    HELP: ['h', 'help'],
 }
 
 
@@ -49,16 +49,12 @@ const getKeyFromMessage = (text) => {
         logger.info(`Checking with ${keys[i]} patterns`);
         const patternArray = pattern[keys[i]];
         const patternLength = patternArray.length;
-        let matched = false;
         for (let j = 0; j < patternLength; j++) {
             // Change conditions
-            if (patternArray[j].test(text)) {
-                matched = true;
+            if (text.split(' ')[0].toLowerCase() === patternArray[j]) {
+                logger.info(`Matched with key ${keys[i]}`);
+                return keys[i];
             }
-        }
-        if (matched) {
-            logger.info(`Matched with key ${keys[i]}`);
-            return keys[i];
         }
     }
     logger.info(`No pattern Found`);
