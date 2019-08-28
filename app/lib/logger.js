@@ -40,7 +40,7 @@ const logger = createLogger({
             level: config.get('logging:fileLevel'),
             label: config.get('logging:label'),
             name: 'log_file',
-            filename: constant.path.log + 'SUGANTH-' + nodeEnv + '.log' + '-' + moment().format('YYYY_MM_DD'),
+            filename: constant.path.log + 'SUGANTH-' + nodeEnv + '-' + moment().format('YYYY_MM_DD') + '.log',
             handleException: true,
             json: false,
             maxSize: 52428800,
