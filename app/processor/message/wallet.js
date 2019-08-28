@@ -24,7 +24,7 @@ const sendUpdatedBalance = (id) => {
 }
 
 const debitAndCreditProcess = (id, textArray) => {
-    const [key = '', type = '', amount = ''] = textArray;
+    const [type = '', amount = ''] = textArray;
     logger.info(`Processing ${type} for ${id}`);
     const comments = textArray.slice(3).join(' ');
     const sql = `insert into wallet_${id}(type,amount,comments) values('${type.toUpperCase()}','${amount}','${comments}');`
@@ -46,10 +46,10 @@ const debitAndCreditProcess = (id, textArray) => {
 }
 
 const statementProcess = (id, textArray) => {
-    const [key = '', type = '', duration = ''] = textArray;
+    const [type = '', duration = ''] = textArray;
     logger.info(`Fetching statement for ${id} with duration ${duration}`);
     let sql = '';
-    switch (duration) {
+    switch (duration.toLowerCase()) {
         case "year":
             sql = `select * from wallet_${id} where created_on >= '${moment().subtract(1, 'years').format('YYYY-MM-DD HH:mm:ss')}'`;
             break;
@@ -94,13 +94,13 @@ const checkInvalidCases = (chat = [], textArray) => {
     logger.info(`textArray ${JSON.stringify(textArray)}`);
     const secondWord = ['credit', 'debit', 'statement'];
     const thirdWordStatement = ['year', 'month', 'week', 'day'];
-    if (textArray.length < 3) {
+    if (textArray.length < 2) {
         return true;
     }
-    if (secondWord.indexOf(textArray[1].toLowerCase()) == -1) {
+    if (secondWord.indexOf(textArray[0].toLowerCase()) == -1) {
         return true;
     }
-    if (textArray[1] === 'statement' && thirdWordStatement.indexOf(textArray[2].toLowerCase()) == -1) {
+    if (textArray[0] === 'statement' && thirdWordStatement.indexOf(textArray[1].toLowerCase()) == -1) {
         return true;
     }
 }
@@ -110,11 +110,14 @@ const wallet = (payload = {}) => {
     logger.info('Inside the wallet process');
     const { update_id = '', message = {} } = payload;
     const { message_id = '', from = {}, chat = {}, date = '', text = '', entities = [] } = message;
-    const textArray = text.trim().split(' ');
+    let textArray = text.trim().split(' ');
+    if (textArray[0] === 'wallet' || textArray[0] === 'w') {
+        textArray = textArray.slice(1);
+    }
     if (checkInvalidCases(chat, textArray)) {
         invalidData(chat.id);
     } else {
-        switch (textArray[1].toLowerCase()) {
+        switch (textArray[0].toLowerCase()) {
             case "debit":
                 debitAndCreditProcess(from.id, textArray);
                 break;

@@ -37,7 +37,7 @@ const incomingMessageHandler = async (request, reply) => {
 }
 
 const pattern = {
-    WALLET: ['w', 'wallet'],
+    WALLET: ['w', 'wallet', 'credit', 'debit', 'statement'],
     HELP: ['h', 'help'],
 }
 
