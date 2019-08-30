@@ -76,7 +76,7 @@ const statementProcess = (id, textArray) => {
                     debit += amount;
                 }
 
-                return `${moment(created_on, 'YYYY-MM-DD HH:mm:ss').format('lll')}: Rs.${amount} [${type}] ${comments}`;
+                return `${moment(created_on, 'YYYY-MM-DD HH:mm:ss').add(330, 'minutes').format('lll')}: Rs.${amount} [${type}] ${comments}`;
             });
             data.push(`Total Credit: ${credit}\tTotal Debit: ${debit}`);
             logger.info(`Sending ${id}'s Statement: Total Credit: ${credit}\nTotal Debit: ${debit}`);

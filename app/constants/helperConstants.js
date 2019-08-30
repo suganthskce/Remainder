@@ -4,7 +4,8 @@ const helpData = {
         '{Statement year} to fetch year\'s statement',
         '{Statement month} to fetch month\'s statement',
         '{Statement week} to fetch week\'s statement',
-        '{Statement day} to fetch day\'s statement']
+        '{Statement day} to fetch day\'s statement',
+    ]
 }
 
 module.exports = helpData;
