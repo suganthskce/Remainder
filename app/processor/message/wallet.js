@@ -26,7 +26,7 @@ const sendUpdatedBalance = (id) => {
 const debitAndCreditProcess = (id, textArray) => {
     const [type = '', amount = ''] = textArray;
     logger.info(`Processing ${type} for ${id}`);
-    const comments = textArray.slice(3).join(' ');
+    const comments = textArray.slice(2).join(' ');
     const sql = `insert into wallet_${id}(type,amount,comments) values('${type.toUpperCase()}','${amount}','${comments}');`
     connect(sql).then(response => {
         logger.info(`Adding ${type} for ${id}: ${JSON.stringify(response)}`);
