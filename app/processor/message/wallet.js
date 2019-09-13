@@ -111,7 +111,7 @@ const wallet = (payload = {}) => {
     const { update_id = '', message = {} } = payload;
     const { message_id = '', from = {}, chat = {}, date = '', text = '', entities = [] } = message;
     let textArray = text.trim().split(' ');
-    if (textArray[0] === 'wallet' || textArray[0] === 'w') {
+    if (textArray[0].toLowerCase() === 'wallet' || textArray[0].toLowerCase() === 'w') {
         textArray = textArray.slice(1);
     }
     if (checkInvalidCases(chat, textArray)) {
