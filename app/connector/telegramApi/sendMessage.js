@@ -14,10 +14,10 @@ const sendMessage = (chat_id, text) => {
     };
     return axios(options)
         .then(responseData => {
-            logger.info(`Send Message Success`);
+            logger.info(`Send Message Success to ${chat_id}`);
         })
         .catch(err => {
-            logger.error("Error in sending message", err);
+            logger.error(`Error in sending message to ${chat_id}`, err);
         });
 }
 

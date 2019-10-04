@@ -5,6 +5,7 @@ const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
 const stock = require('./constants/stock.json');
 const { logger } = require("./../lib/logger");
+const sendMessage = require("./../connector/telegramApi/sendMessage");
 
 const getStock = async () => {
     logger.info(`Inside getStock`);
