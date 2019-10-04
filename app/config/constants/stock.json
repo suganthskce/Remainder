@@ -1,0 +1,45 @@
+{
+    "stockList": [
+        {
+            "id": "YESBANK",
+            "url": "https://www.moneycontrol.com/india/stockpricequote/banks-private-sector/yesbank/YB",
+            "chatId": [
+                835841168,
+                785027252,
+                960443853
+            ],
+            "fetchData": [
+                {
+                    "id": "currentPrice",
+                    "key": "Current Price",
+                    "selector": "#div_nse_livebox_wrap > div.nsedata_bx > div.nsbs_bg > div > div.pcnsb.div_live_price_wrap > span.span_price_wrap.stprh.rdclr"
+                },
+                {
+                    "id": "change",
+                    "key": "Change",
+                    "selector": "#div_nse_livebox_wrap > div.nsedata_bx > div.nsbs_bg > div > div.pcnsb.div_live_price_wrap > span.span_price_change_prcnt.rdpc1"
+                },
+                {
+                    "id": "priceprevclose",
+                    "key": "Prev. Close",
+                    "selector": "#div_nse_livebox_wrap > div.nsedata_bx > div.clearfix.mkt_openclosebx > div.open_lhs1 > ul > li:nth-child(1) > p.prev_open.priceprevclose"
+                },
+                {
+                    "id": "priceopen",
+                    "key": "Open Price",
+                    "selector": "#div_nse_livebox_wrap > div.nsedata_bx > div.clearfix.mkt_openclosebx > div.open_lhs1 > ul > li:nth-child(2) > p.prev_open.priceopen"
+                },
+                {
+                    "id": "todaysLow",
+                    "key": "Today's Low",
+                    "selector": "#div_nse_livebox_wrap > div.nsedata_bx > div.clearfix.mkt_openclosebx > div.open_lhs1 > div > div.clearfix.lowhigh_band.todays_lowhigh_wrap > div.low_high1"
+                },
+                {
+                    "id": "todaysHigh",
+                    "key": "Today's High",
+                    "selector": "#div_nse_livebox_wrap > div.nsedata_bx > div.clearfix.mkt_openclosebx > div.open_lhs1 > div > div.clearfix.lowhigh_band.todays_lowhigh_wrap > div.low_high3"
+                }
+            ]
+        }
+    ]
+}
