@@ -10,36 +10,41 @@ const sendMessage = require("./../connector/telegramApi/sendMessage");
 const getStock = async () => {
     logger.info(`Inside getStock`);
     const { stockList = [] } = stock;
-    stockList.forEach(data => {
-        const { id = '', url = '', fetchData = [], chatId = [] } = data;
-        logger.info(`Fetching stock for id`);
-        puppeteer
-            .launch()
-            .then(browser => browser.newPage())
-            .then(page => {
-                logger.info(`Loading page`);
-                return page.goto(url).then(function () {
-                    return page.content();
-                });
-            })
-            .then(html => {
-                logger.info(`Loading HTML`);
-                const $ = cheerio.load(html);
-                let result = {};
-                let message = `${id}\n`;
-                fetchData.forEach(content => {
-                    const { key = '', selector = '' } = content;
-                    const value = $(selector).text();
-                    result[key] = value;
-                    message = message + `[${key}]:${value}\n`;
-                });
-                chatId.forEach(chat => {
-                    sendMessage(chat, message);
-                });
-                logger.info(`Result: ${JSON.stringify(result)}`);
-            })
-            .catch(console.error);
-    });
+    try {
+        stockList.forEach(data => {
+            const { id = '', url = '', fetchData = [], chatId = [] } = data;
+            logger.info(`Fetching stock for id`);
+            puppeteer
+                .launch()
+                .then(browser => { logger.info(`Opening Browser......`); return browser.newPage(); })
+                .then(page => {
+                    logger.info(`Loading page`);
+                    return page.goto(url).then(function () {
+                        return page.content();
+                    });
+                })
+                .then(html => {
+                    logger.info(`Loading HTML`);
+                    const $ = cheerio.load(html);
+                    let result = {};
+                    let message = `${id}\n`;
+                    fetchData.forEach(content => {
+                        const { key = '', selector = '' } = content;
+                        const value = $(selector).text();
+                        result[key] = value;
+                        message = message + `[${key}]:${value}\n`;
+                    });
+                    chatId.forEach(chat => {
+                        sendMessage(chat, message);
+                    });
+                    logger.info(`Result: ${JSON.stringify(result)}`);
+                })
+                .catch(logger.error);
+        });
+    } catch (err) {
+        logger.error(`Error: ${JSON.stringify(err)}`);
+    }
+
 }
 
 setConfigInterval = () => {
