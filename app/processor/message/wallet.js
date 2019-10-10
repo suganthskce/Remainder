@@ -1,8 +1,6 @@
 const { isEmpty } = require("lodash");
-const registerNewUser = require('../../requestMapper/message/registerNewUser');
 const connect = require('./../../connector/database/connect');
 const sendMessage = require('./../../connector/telegramApi/sendMessage');
-const helpData = require('./../../constants/helperConstants');
 const { logger } = require('./../../lib/logger');
 const moment = require('moment');
 

@@ -5,7 +5,8 @@ const helpData = {
         '{Statement month} to fetch month\'s statement',
         '{Statement week} to fetch week\'s statement',
         '{Statement day} to fetch day\'s statement',
-    ]
+    ],
+    'stock': ['{stock report 5 stock_code}']
 }
 
 module.exports = helpData;

@@ -1,12 +1,12 @@
 const { isEmpty } = require("lodash");
 const processEntities = require("../../processor/message/entities");
 const helpMessages = require("../../processor/message/helpMessages");
+const fetchDailyData = require("../../processor/stocks/fetchDailyData");
 const wallet = require("../../processor/message/wallet");
 const sendMessage = require("./../../connector/telegramApi/sendMessage");
 const { logger } = require("./../../lib/logger");
 
 const incomingMessageHandler = async (request, reply) => {
-
     const { body = {} } = request;
     const data = JSON.parse(JSON.stringify(body));
     logger.info(`Data recieved : ${JSON.stringify(data)}`);
@@ -24,6 +24,9 @@ const incomingMessageHandler = async (request, reply) => {
             case "HELP":
                 helpMessages(data);
                 break;
+            case "STOCK":
+                fetchDailyData(data);
+                break;
             case "ERROR":
             default:
                 logger.info(chat.id);
@@ -39,8 +42,8 @@ const incomingMessageHandler = async (request, reply) => {
 const pattern = {
     WALLET: ['w', 'wallet', 'credit', 'debit', 'statement'],
     HELP: ['h', 'help'],
+    STOCK: ['s', 'stocks', 'stock']
 }
-
 
 const getKeyFromMessage = (text) => {
     const keys = Object.keys(pattern);

@@ -50,12 +50,12 @@ const getStock = async () => {
 setConfigInterval = () => {
     setInterval(() => {
         getStock();
-    }, 1000 * 60 * 60 * 24);
+    }, 1000 * 60 * 5);
 }
 
 const initialize = () => {
-    getStock();
-    setConfigInterval();
+    //getStock();
+    //setConfigInterval();
 }
 
 module.exports = { initialize };
